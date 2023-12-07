@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from user.views import UserViewSet, ClientViewSet, ManagerViewSet, CourierViewSet, login
+from django.views.generic import TemplateView
+from user.views import UserViewSet, ClientViewSet, ManagerViewSet, CourierViewSet
+from rest_framework.schemas import get_schema_view
+
 
 
 router = routers.DefaultRouter()
@@ -29,5 +32,15 @@ router.register(r'courier', CourierViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
     path('', include(router.urls)),
+    path('documentation/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url':'openapi-schema'}
+    ), name='swagger-ui'),
+    path('openapi', get_schema_view(
+            title="Cube platform",
+            description="API for all things …",
+            version="1.0.0"
+    ), name='openapi-schema'),
 ]
