@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'user',
     'rest_framework_swagger',
     'restaurant',
-    'delivery'
+    'delivery',
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
