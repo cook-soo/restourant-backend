@@ -18,13 +18,13 @@ class DeliveryAdmin(admin.ModelAdmin):
     form = StandardDeliveryAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
-        if Cook.objects.filter(user=request.user).exists():
+        if request.user.groups.filter(name='Cooks').exists():
             return CookDeliveryAdminForm
         else:
             return StandardDeliveryAdminForm
 
     def has_change_permission(self, request, obj=None):
-        if Cook.objects.filter(user=request.user).exists():
+        if request.user.groups.filter(name='Cooks').exists():
             return request.user.has_perm('delivery.change_cook_delivery')
         return super().has_change_permission(request, obj)
 

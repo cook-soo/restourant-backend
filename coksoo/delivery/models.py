@@ -7,7 +7,6 @@ STATUSES = (
         (1, 'Option One'),
         (2, 'Option Two'),
         (3, 'Option Three'),
-        # Add more choices as needed
     )
 
 

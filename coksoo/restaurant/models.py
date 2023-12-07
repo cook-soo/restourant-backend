@@ -1,4 +1,9 @@
 from django.db import models
+from django.utils import timezone
+from datetime import timedelta
+
+current_date = timezone.now().date()
+future_date = current_date + timedelta(days=20)
 
 
 class Filial(models.Model):
@@ -28,6 +33,7 @@ class Meal(models.Model):
 
 class Promocode(models.Model):
     value = models.CharField(max_length=20)
+    expiry_date = models.DateField(default=future_date)
 
     def __str__(self):
         return self.value

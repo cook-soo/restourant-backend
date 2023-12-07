@@ -7,20 +7,20 @@ from delivery.models import Delivery
 
     
 class UserType(Model):
-    # bonuses = PositiveIntegerField(default=0)
+    bonuses = PositiveIntegerField(default=0)
     user = ForeignKey(User, on_delete=CASCADE)
     
     def __str__(self):
         return self.user
     
-    # def increase_bonuses(self, amount):
-    #     self.bonuses += amount*0.05
-    #     self.save()
+    def increase_bonuses(self, amount):
+        self.bonuses += amount*0.05
+        self.save()
         
-    # def decrease_bonuses(self, amount):
-    #     if self.bonuses-amount>0:
-    #         self.bonuses-=amount
-    #         self.save()
+    def decrease_bonuses(self, amount):
+        if self.bonuses-amount>0:
+            self.bonuses-=amount
+            self.save()
         
     class Meta:
         abstract = True

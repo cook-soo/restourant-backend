@@ -28,22 +28,22 @@ class UserTypeSerializer(HyperlinkedModelSerializer):
 class ClientSerializer(UserTypeSerializer):
     class Meta:
         model = Client
-        fields = ('url', 'id', 'phonenumber', 'address','username', 'first_name', 'last_name')
+        fields = ('url', 'id', 'phonenumber', 'address','username', 'first_name', 'last_name', 'bonuses')
 
 
 class ManagerSerializer(UserTypeSerializer):
     class Meta:
         model = Manager
-        fields = ('url', 'id', 'username', 'first_name', 'last_name')
+        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'bonuses')
 
 
 class CourierSerializer(UserTypeSerializer):
     class Meta:
         model = Courier
-        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'phonenumber')
+        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'phonenumber', 'bonuses')
 
 
 class CookSerializer(UserTypeSerializer):
     class Meta:
         model = Cook
-        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'filial')
+        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'filial', 'bonuses')
