@@ -1,11 +1,11 @@
 from rest_framework.serializers import HyperlinkedModelSerializer, SerializerMethodField
-from user.models import Client, Manager, Courier, User
+from user.models import Client, Manager, Courier, User, Cook
 
 
 class UserSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'id', 'username', 'first_name', 'last_name', 'password']
+        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'password')
 
 class UserTypeSerializer(HyperlinkedModelSerializer):
     username = SerializerMethodField()
@@ -24,19 +24,26 @@ class UserTypeSerializer(HyperlinkedModelSerializer):
     def get_last_name(self, obj):
         return obj.user.last_name
 
+
 class ClientSerializer(UserTypeSerializer):
     class Meta:
         model = Client
-        fields = ['url', 'id', 'phonenumber', 'address','username', 'first_name', 'last_name']
+        fields = ('url', 'id', 'phonenumber', 'address','username', 'first_name', 'last_name')
 
 
 class ManagerSerializer(UserTypeSerializer):
     class Meta:
         model = Manager
-        fields = ['url', 'id', 'username', 'first_name', 'last_name']
+        fields = ('url', 'id', 'username', 'first_name', 'last_name')
 
 
 class CourierSerializer(UserTypeSerializer):
     class Meta:
         model = Courier
-        fields = ['url', 'id', 'username', 'first_name', 'last_name', 'phonenumber']
+        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'phonenumber')
+
+
+class CookSerializer(UserTypeSerializer):
+    class Meta:
+        model = Cook
+        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'filial')

@@ -1,5 +1,6 @@
 from django.db.models import *
 from django.contrib.auth.models import User
+from restaurant.models import Filial
 
     
 class UserType(Model):
@@ -30,3 +31,11 @@ class Courier(UserType):
 
     def __str__(self):
         return f"Courier {super()}"
+    
+
+class Cook(UserType):
+    filial = ForeignKey(Filial, on_delete=CASCADE, related_name="cook_filial")
+    qr_code = ImageField()    
+    
+    def __str__(self):
+        return f"Cook {super()}"

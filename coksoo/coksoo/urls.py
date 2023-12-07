@@ -17,12 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from user import views
+from user.views import UserViewSet, ClientViewSet, ManagerViewSet, CourierViewSet, login
 
 
 router = routers.DefaultRouter()
-router.register(r'user', views.UserViewSet)
-router.register(r'client', views.ClientViewSet)
+router.register(r'user', UserViewSet)
+router.register(r'client', ClientViewSet)
+router.register(r'manager', ManagerViewSet)
+router.register(r'courier', CourierViewSet)
 
 
 urlpatterns = [
